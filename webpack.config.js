@@ -35,6 +35,7 @@ module.exports = {
 
   devServer: {
     contentBase: outputFile,
+    historyApiFallback: true,
     port: 9000
   }
 
