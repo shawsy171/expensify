@@ -1,22 +1,29 @@
 // @ts-check
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// pages
-import DashBoardPage from './../modules/dashboard/containers/dashboard-page.jsx';
-import AddExpensePage from './../modules/dashboard/containers/add-expense/add-expense-page.jsx';
-import EditExpensePage from './../modules/dashboard/containers/edit-expense/edit-expense-page.jsx';
-import HelpPage from './../modules/site/containers/help-page.jsx';
+// dashboard
+import DashBoardPage from './../modules/dashboard/containers/dashboard-page.jsx'; // Entry point
+// work around so i can have routes in different files
+import dashboardRoutes from './../modules/dashboard/routes/dashboard.routes.jsx';
 
-const routes = (
+// site
+import Header from './../modules/site/components/header/header.jsx';
+import siteRoutes from './../modules/site/routes/site.routes.jsx';
+
+
+const AppRoutes = () => (
   <BrowserRouter>
     <div>
-      <Route path="/" component={DashBoardPage} exact={true} />
-      <Route path="/create" component={AddExpensePage} />
-      <Route path="/edit" component={EditExpensePage} />
-      <Route path="/help" component={HelpPage} />
+      <Header />
+      <Switch>
+        <Route path="/" component={DashBoardPage} exact={true} />
+        {dashboardRoutes()}
+        {siteRoutes()}
+      </Switch>
     </div>
+    
   </BrowserRouter>
 );
 
-export default routes;
+export default AppRoutes;
