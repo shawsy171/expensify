@@ -2,7 +2,9 @@
 
 import { createStore } from 'redux';
 
-// Action generators
+/**
+ *  Action generators
+ */
 
 // const incrementCount = (payload = {}) => ({
 //   type: 'INCREMENT',
@@ -28,7 +30,14 @@ const setCount = ({ setValue }) => ({
   setValue
 })
 
-const store = createStore((state = { count: 0 }, action) =>  {
+
+/**
+ * Reducers
+ * 1. Reducers are pure functions
+ * 2. state and action must be immutable
+ */
+
+const countReducer = (state = { count: 0 }, action) =>  {
   // console.log('Store Called', action.type);
   console.log(action);
 
@@ -47,7 +56,9 @@ const store = createStore((state = { count: 0 }, action) =>  {
     default:
       return state;
   }
-});
+}
+
+const store = createStore(countReducer);
 
 store.subscribe((data) => {
   console.log(store.getState());

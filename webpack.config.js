@@ -6,7 +6,7 @@ module.exports = {
   // entry must be defined in webpack so webpack know with to start
   entry: {
     // app: './src/app.jsx',
-    app: './src/playground/redux-101.js',
+    app: './src/playground/redux-expensify.js',
   },
 
   output: {
