@@ -5,8 +5,8 @@ console.log(outputFile);
 module.exports = {
   // entry must be defined in webpack so webpack know with to start
   entry: {
-    app: './src/app.jsx',
-    // app: './src/playground/redux-expensify.js',
+    // app: './src/app.jsx',
+    app: './src/playground/higher-order-components.js',
   },
 
   output: {
@@ -20,7 +20,7 @@ module.exports = {
   module: {
     rules: [{
       loader: 'babel-loader',
-      test: /\.jsx$/,
+      test: /\.js$|\.jsx$/,
       exclude: /node_modules/,
     }, {
       test: /\.s?css$/,
