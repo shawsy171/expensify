@@ -10,41 +10,46 @@ import './styles/styles.scss';
 import AppRoutes from './routes/app.routes.jsx';
 
 // state
-import configureStore from './store/configureStore';
-import * as expenseActions from './store/expenses/actions';
-import * as expenseSelectors from './store/expenses/selectors';
-import * as filterActions from './store/filters/actions';
+import configureStore from './core/store/configureStore';
+import { Provider } from 'react-redux';
+// import * as expenseActions from './store/expenses/actions';
+// import * as expenseSelectors from './store/expenses/selectors';
+// import * as filterActions from './store/filters/actions';
 
 const store = configureStore();
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });
 
-const expenseOne = store.dispatch(
-  expenseActions.addExpense({
-    description: 'Water Bill', 
-    note: 'to be paid',
-    amount: 5000,
-    createdAt: 19299303
-  })
+// const expenseOne = store.dispatch(
+//   expenseActions.addExpense({
+//     description: 'Water Bill', 
+//     note: 'to be paid',
+//     amount: 5000,
+//     createdAt: 19299303
+//   })
+// );
+
+// const expenseTwo = store.dispatch(
+//   expenseActions.addExpense({
+//     description: 'Gas Bill', 
+//     note: 'to be paid',
+//     amount: 19000,
+//     createdAt: 19299303
+//   })
+// );
+
+// store.dispatch(filterActions.setTextFilter('water'));
+
+// const state = store.getState();
+//   const visibleExpenses = expenseSelectors.getVisibleExpenses(state.expenses, state.filters);
+//   console.log(visibleExpenses);
+
+const jsx = (
+  <Provider store={store}>
+    <AppRoutes />
+  </Provider>
 );
 
-const expenseTwo = store.dispatch(
-  expenseActions.addExpense({
-    description: 'Gas Bill', 
-    note: 'to be paid',
-    amount: 19000,
-    createdAt: 19299303
-  })
-);
-
-store.dispatch(filterActions.setTextFilter('water'));
-
-const state = store.getState();
-  const visibleExpenses = expenseSelectors.getVisibleExpenses(state.expenses, state.filters);
-  console.log(visibleExpenses);
-
-
-
-ReactDOM.render(<AppRoutes />, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('app'));

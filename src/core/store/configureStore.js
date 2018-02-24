@@ -1,7 +1,7 @@
 // @ts-check
 import { createStore, combineReducers } from 'redux';
-import expensesReducer from './expenses/reducers';
-import filterReducer from './filters/reducers';
+import expensesReducer from '../../features/expense/store/expense/reducers';
+import filterReducer from '../../features/expense/store/filters/reducers';
 
 export default () => {
   const store = createStore(

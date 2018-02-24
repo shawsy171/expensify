@@ -5,8 +5,8 @@ console.log(outputFile);
 module.exports = {
   // entry must be defined in webpack so webpack know with to start
   entry: {
-    // app: './src/app.jsx',
-    app: './src/playground/higher-order-components.js',
+    app: './src/app.jsx',
+    // app: './src/playground/higher-order-components.js',
   },
 
   output: {
