@@ -51,7 +51,7 @@ export const addExpense = (
  * @param { number } id
  * @example 390ce2f8-7120-4c7c-95ee-8e18f2d65a26
  */
-export const removeExpense = ({id}) => ({
+export const removeExpense = (id) => ({
   type: expenseTypes.REMOVE_EXPENSE,
   id,
 });
