@@ -26,7 +26,7 @@ const expenseOne = store.dispatch(
   expenseActions.addExpense({
     description: 'Water Bill', 
     note: 'to be paid',
-    amount: 5000,
+    amount: 45000,
     createdAt: 19299303
   })
 );
@@ -36,12 +36,15 @@ const expenseTwo = store.dispatch(
     description: 'Gas Bill', 
     note: 'to be paid',
     amount: 19000,
-    createdAt: 19299303
+    createdAt: 256303
   })
 );
 
 store.dispatch(filterActions.setTextFilter('water'));
 
+setTimeout(() => {
+  store.dispatch(filterActions.setTextFilter('bill'));
+}, 3000);
 // const state = store.getState();
 //   const visibleExpenses = expenseSelectors.getVisibleExpenses(state.expenses, state.filters);
 //   console.log(visibleExpenses);

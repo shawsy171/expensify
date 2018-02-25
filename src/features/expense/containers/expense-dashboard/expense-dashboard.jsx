@@ -2,7 +2,7 @@
 import React from 'react';
 
 // components
-import ExpenseList from '../../components/expense-list.jsx';
+import ExpenseList from '../../../expense/components/expense-list/expense-list.jsx';
 
 const ExpenseDashBoard = () => (
   <div>
