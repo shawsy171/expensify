@@ -8,7 +8,8 @@ const FILTER_REDUCER_DEFAULT = {
 const filterReducer = (state = FILTER_REDUCER_DEFAULT, action) => {
   switch (action.type) {
     case 'SET_TEXT_FILTER':
-      return Object.assign({}, state, { text: action.text });
+      // return Object.assign({}, state, { text: action.text });
+      return { ...state, text: action.text };
 
     case 'SORT_BY_AMOUNT':
       return Object.assign({}, state, { sortBy: 'amount' });

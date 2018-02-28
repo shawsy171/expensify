@@ -14,15 +14,12 @@ const expensesReducer = (state = EXPENSES_REDUCER_DEFAULT_STATE, action) => {
     case expenseTypes.EDIT_EXPENSE:
       return state.map((expense) => {
         if (expense.id === action.id) {
-          return Object.assign({}, expense, action.updates)
-          // return {
-          //   ...expense,
-          //   ...action.updates,
-          // }
+          return { ...expense, ...action.updates }
         } else {
           return expense
         }
       })
+
     default:
       return state;
   }

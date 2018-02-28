@@ -40,10 +40,28 @@ const expenseTwo = store.dispatch(
   })
 );
 
-store.dispatch(filterActions.setTextFilter('water'));
+const expenseThree = store.dispatch(
+  expenseActions.addExpense({
+    description: 'Rent', 
+    note: 'to be paid',
+    amount: 109000,
+    createdAt: 1999305
+  })
+);
+
+const expenseFour = store.dispatch(
+  expenseActions.addExpense({
+    description: 'Credit Card Bill', 
+    note: 'to be paid',
+    amount: 63000,
+    createdAt: 9299304
+  })
+);
+
+store.dispatch(filterActions.setTextFilter(''));
 
 setTimeout(() => {
-  store.dispatch(filterActions.setTextFilter('bill'));
+  store.dispatch(filterActions.setTextFilter(''));
 }, 3000);
 // const state = store.getState();
 //   const visibleExpenses = expenseSelectors.getVisibleExpenses(state.expenses, state.filters);

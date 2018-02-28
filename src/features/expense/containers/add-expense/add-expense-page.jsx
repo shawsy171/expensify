@@ -1,7 +1,28 @@
+// @ts-check
+
 import React from 'react';
+import { connect } from 'react-redux';
 
-const AddExpensePage = () => (
-  <p> this is the AddExpensePage </p>
-);
+// components
+import ExpenseForm from './../../components/expense-form/expense-form.jsx';
 
-export default AddExpensePage;
+// store
+import { addExpense } from './../../store/expense/actions';
+
+const AddExpensePage = ({ dispatch, history }) => {
+  const onSubmit = (expense) => {
+    dispatch(addExpense(expense));
+    history.push('/');
+  }
+  return (
+    <div>
+      <p> this is the AddExpensePage </p>
+      <ExpenseForm 
+        onSubmit={onSubmit}
+      />
+    </div>
+  );
+}
+
+
+export default connect()(AddExpensePage);
