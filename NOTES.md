@@ -16,3 +16,11 @@ https://yarnpkg.com/en/docs/cli/run
 2. Set propTypes & defaultProps @ 4:15
 3. Component vs PureComponent vs Functional Stateless Component @ 8:14
 4. why did you update tool npm packege
+5. Learn how React works @ 16:25
+http://www.mattgreer.org/articles/react-internals-part-one-basic-rendering/
+
+### REACT NYC 
+https://www.youtube.com/channel/UC87H0RRqawG6I7oWAf9i48g
+
+### Air BnB Date Picker
+https://github.com/airbnb/react-dates

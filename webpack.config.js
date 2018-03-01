@@ -1,7 +1,6 @@
 const path = require('path');
 
 const outputFile = path.join(__dirname, 'public');
-console.log(outputFile);
 module.exports = {
   // entry must be defined in webpack so webpack know with to start
   entry: {
@@ -14,6 +13,9 @@ module.exports = {
     path: outputFile,
     // filename is the name of the file produced by webpack
     filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   // modules which take rules which can be configured to do tasks
   // e.g. process babel
@@ -28,7 +30,7 @@ module.exports = {
         'style-loader',
         'css-loader',
         'sass-loader',
-      ]
+      ],
     }],
   },
 
@@ -37,7 +39,7 @@ module.exports = {
   devServer: {
     contentBase: outputFile,
     historyApiFallback: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 
-}
+};
