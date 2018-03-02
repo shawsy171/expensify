@@ -1,10 +1,9 @@
-// @ts-check
-
 import React from 'react';
 import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import PropTypes from 'prop-types';
 
 class ExpenseForm extends React.Component {
   state = {
@@ -16,8 +15,40 @@ class ExpenseForm extends React.Component {
     error: false,
   }
 
+  onSubmit = (e) => {
+    e.preventDefault();
+    const {
+      description,
+      amount,
+      createdAt,
+    } = this.state;
+
+    const { onSubmit } = this.props;
+
+    if (!description || !amount) {
+      this.setState(() => ({ error: true }));
+    } else {
+      this.setState(() => ({ error: false }));
+
+      // pass expense to the AddExpense container
+      onSubmit({
+        description,
+        amount: parseFloat(amount),
+        createdAt: createdAt.valueOf(),
+      });
+    }
+  }
+  onDateChange = (createdAt) => {
+    if (createdAt) {
+      return this.setState(() => ({ createdAt }));
+    }
+    return undefined;
+  }
+
+  onFocusChange = ({ focused }) => this.setState(() => ({ calenderFocused: focused }));
+
   handleDescriptionChange = (e) => {
-    const description = e.target.value
+    const description = e.target.value;
     this.setState(() => (
       { description }
     ));
@@ -25,7 +56,7 @@ class ExpenseForm extends React.Component {
 
   handleNoteChange = (e) => {
     const note = e.target.value;
-    this.setState(() => ({ note }))
+    this.setState(() => ({ note }));
   }
 
   handleAmountChange = (e) => {
@@ -36,44 +67,9 @@ class ExpenseForm extends React.Component {
     }
   }
 
-  onDateChange = (createdAt) => {
-    if (createdAt) {
-      return this.setState(() => ({ createdAt }))
-    }
-  }
+  formError = () => (this.state.error ? <p>There has been an error</p> : undefined);
 
-  onFocusChange = ({ focused }) => {
-    return this.setState(() => ({ calenderFocused: focused }))
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {
-      description,
-      amount,
-      createdAt,
-    } = this.state;
-    
-    const { onSubmit } = this.props;
-
-    if (!description || !amount) {
-      this.setState(() => ({ error: true}));
-    } else {
-      this.setState(() => ({ error: false}));
-      
-      // pass expense to the AddExpense container
-      onSubmit({
-        description,
-        amount: parseFloat(amount),
-        createdAt: createdAt.valueOf(),
-      })
-    }
-  }
-
-  formError = () => ( this.state.error ? <p>There has been an error</p> : undefined);
-
-  render () {
-    
+  render() {
     const {
       description,
       note,
@@ -92,35 +88,39 @@ class ExpenseForm extends React.Component {
           <input
             type="text"
             placeholder="description"
-            autoFocus
-            value={ description }
+            // autoFocus
+            value={description}
             onChange={this.handleDescriptionChange}
           />
-          <input 
+          <input
             placeholder="Amount"
             type="text"
-            value={ amount }
+            value={amount}
             onChange={this.handleAmountChange}
           />
           <SingleDatePicker
             date={createdAt}
             onDateChange={this.onDateChange}
-            focused={calenderFocused} 
+            focused={calenderFocused}
             onFocusChange={this.onFocusChange}
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
           <textarea
             placeholder="Add a note for your Expense (Optional)"
-            value={ note }
+            value={note}
             onChange={this.handleNoteChange}
-          >
-          </textarea>
+          />
+
           <button >Add Expense</button>
         </form>
       </div>
-    )
+    );
   }
 }
+
+ExpenseForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ExpenseForm;

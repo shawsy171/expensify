@@ -22,7 +22,6 @@ const AppRoutes = () => (
         {siteRoutes()}
       </Switch>
     </div>
-    
   </BrowserRouter>
 );
 
