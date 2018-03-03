@@ -44,10 +44,7 @@ const EditExpensePage = (props) => {
 };
 
 const mapStateToProps = (state, props) => ({
-  expense: state.expenses.find((expense) => {
-    console.log('expense.id', expense.id, 'params.id', props.match.params.id, expense.id === props.match.params.id);
-    return expense.id === props.match.params.id;
-  }),
+  expense: state.expenses.find(expense => expense.id === props.match.params.id),
 });
 
 EditExpensePage.propTypes = {

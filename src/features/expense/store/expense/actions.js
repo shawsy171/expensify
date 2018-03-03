@@ -1,4 +1,3 @@
-// @ts-check
 import uuid from 'uuid';
 
 // Actions

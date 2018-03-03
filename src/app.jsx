@@ -17,7 +17,7 @@ import * as filterActions from './features/expense/store/filters/actions';
 const store = configureStore();
 
 store.subscribe(() => {
-  // console.log(store.getState());
+  console.log(store.getState());
 });
 
 store.dispatch(expenseActions.addExpense({
