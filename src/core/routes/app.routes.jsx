@@ -3,13 +3,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // expense
-import ExpenseDashboard from '../../features/expense/containers/expense-dashboard/expense-dashboard.jsx'; // Entry point
-// work around so i can have routes in different files
-import expenseRoutes from '../../features/expense/routes/expense.routes.jsx';
+import ExpenseDashboard from '../../features/expense/containers/expense-dashboard/expense-dashboard'; // Entry point
+import expenseRoutes from '../../features/expense/routes/expense.routes'; // work around so i can have routes in different files
 
 // site
-import Header from '../../features/site/components/header/header.jsx';
-import siteRoutes from '../../features/site/routes/site.routes.jsx';
+import Header from '../../features/site/components/header/header';
+import siteRoutes from '../../features/site/routes/site.routes'; // work around so i can have routes in different files
 
 
 const AppRoutes = () => (
@@ -17,7 +16,7 @@ const AppRoutes = () => (
     <div>
       <Header />
       <Switch>
-        <Route path="/" component={ExpenseDashboard} exact={true} />
+        <Route path="/" component={ExpenseDashboard} exact />
         {expenseRoutes()}
         {siteRoutes()}
       </Switch>

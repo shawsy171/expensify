@@ -20,7 +20,6 @@ const EditExpensePage = (props) => {
       },
     },
   } = props;
-
   const handleSubmit = (submittedExpense) => {
     dispatch(editExpense(id, submittedExpense));
     history.push('/');

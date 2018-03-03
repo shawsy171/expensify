@@ -30,11 +30,8 @@ ExpenseList.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.shape({
     description: PropTypes.string,
     note: PropTypes.string,
-    amount: PropTypes.oneOf([
-      'date',
-      'amount',
-    ]),
-    createdAt: PropTypes.string,
+    amount: PropTypes.number,
+    createdAt: PropTypes.number,
   })).isRequired,
 };
 
