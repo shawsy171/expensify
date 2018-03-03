@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const FILTER_REDUCER_DEFAULT = {
+export const FILTER_REDUCER_DEFAULT = {
   text: '',
   sortBy: 'date',
   startDate: moment().startOf('month'),

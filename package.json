@@ -8,7 +8,10 @@
     "serve": "live-server public/",
     "build": "webpack --watch",
     "build-babal": "babel src/app.jsx --out-file=public/scripts/app.js --presets=env,react --watch",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "lint": "eslint --ext .jsx,.js .",
+    "test": "jest",
+    "dev-test": "jest --watch"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -44,6 +47,7 @@
     "webpack-dev-server": "^2.11.1"
   },
   "devDependencies": {
-    "eslint": "^4.18.1"
+    "eslint": "^4.18.1",
+    "jest": "^22.4.2"
   }
 }
