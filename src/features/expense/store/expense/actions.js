@@ -55,14 +55,14 @@ export const removeExpense = id => ({
 });
 
 /** edit an existing expense
- * @param { number } id 
+ * @param { number } id
  * @example 390ce2f8-7120-4c7c-95ee-8e18f2d65a26
- * @param { Object } updates 
- * @interface { 
- *  description?: string, 
- *  note?: string, 
- *  amount?: number, 
- *  createdAt?: number 
+ * @param { Object } updates
+ * @interface {
+ *  description?: string,
+ *  note?: string,
+ *  amount?: number,
+ *  createdAt?: number
  * }
  * @example { amount: 500 }
  */

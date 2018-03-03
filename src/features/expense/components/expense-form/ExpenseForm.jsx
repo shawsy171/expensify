@@ -6,13 +6,17 @@ import 'react-dates/lib/css/_datepicker.css';
 import PropTypes from 'prop-types';
 
 class ExpenseForm extends React.Component {
-  state = {
-    description: '',
-    note: '',
-    amount: '',
-    createdAt: moment(),
-    calenderFocused: false,
-    error: false,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: props.expense.description,
+      note: props.expense.note,
+      amount: (props.expense.amount / 100).toFixed(2).toString(),
+      createdAt: moment(props.expense.createdAt),
+      calenderFocused: false,
+      error: false,
+    };
   }
 
   onSubmit = (e) => {
@@ -33,11 +37,12 @@ class ExpenseForm extends React.Component {
       // pass expense to the AddExpense container
       onSubmit({
         description,
-        amount: parseFloat(amount),
+        amount: parseFloat(amount) * 100,
         createdAt: createdAt.valueOf(),
       });
     }
   }
+
   onDateChange = (createdAt) => {
     if (createdAt) {
       return this.setState(() => ({ createdAt }));
@@ -121,6 +126,27 @@ class ExpenseForm extends React.Component {
 
 ExpenseForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  expense: PropTypes.shape({
+    amount: PropTypes.number,
+    createdAt: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.number,
+    ]),
+    description: PropTypes.string,
+    id: PropTypes.string,
+    note: PropTypes.string,
+  }),
+};
+
+ExpenseForm.defaultProps = {
+  expense: {
+    description: '',
+    note: '',
+    amount: 0,
+    createdAt: moment(),
+    calenderFocused: false,
+    error: false,
+  },
 };
 
 export default ExpenseForm;

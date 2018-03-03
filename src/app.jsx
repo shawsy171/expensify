@@ -17,21 +17,21 @@ import * as filterActions from './features/expense/store/filters/actions';
 const store = configureStore();
 
 store.subscribe(() => {
-  console.log(store.getState());
+  // console.log(store.getState());
 });
 
 store.dispatch(expenseActions.addExpense({
   description: 'Water Bill',
   note: 'to be paid',
   amount: 45000,
-  createdAt: 19299303,
+  createdAt: 3119933256303,
 }));
 
 store.dispatch(expenseActions.addExpense({
   description: 'Gas Bill',
   note: 'to be paid',
   amount: 19000,
-  createdAt: 256303,
+  createdAt: 91993325633,
 }));
 
 store.dispatch(expenseActions.addExpense({
