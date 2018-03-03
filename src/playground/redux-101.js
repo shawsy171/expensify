@@ -11,24 +11,24 @@ import { createStore } from 'redux';
 //   incrementBy: typeof payload.incrementBy === 'number' ? payload.incrementBy : 1,
 // });
 
-const incrementCount = ({ incrementBy = 1} = {}) => ({
+const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: 'INCREMENT',
   incrementBy,
 });
 
-const decrementCount = ({ decrementBy = 1} = {}) => ({
+const decrementCount = ({ decrementBy = 1 } = {}) => ({
   type: 'DECREMENT',
   decrementBy,
 });
 
 const resetCount = () => ({
   type: 'RESET',
-})
+});
 
 const setCount = ({ setValue }) => ({
   type: 'SET',
-  setValue
-})
+  setValue,
+});
 
 
 /**
@@ -37,7 +37,7 @@ const setCount = ({ setValue }) => ({
  * 2. state and action must be immutable
  */
 
-const countReducer = (state = { count: 0 }, action) =>  {
+const countReducer = (state = { count: 0 }, action) => {
   // console.log('Store Called', action.type);
   console.log(action);
 
@@ -56,7 +56,7 @@ const countReducer = (state = { count: 0 }, action) =>  {
     default:
       return state;
   }
-}
+};
 
 const store = createStore(countReducer);
 
@@ -72,4 +72,4 @@ store.dispatch(resetCount());
 
 store.dispatch(decrementCount({ decrementBy: 7 }));
 
-store.dispatch(setCount({setValue: 934}))
+store.dispatch(setCount({ setValue: 934 }));
