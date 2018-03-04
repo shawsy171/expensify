@@ -4,14 +4,20 @@ import * as actions from './actions';
 import filterReducer, { FILTER_REDUCER_DEFAULT } from './reducers';
 
 describe('Filters store', () => {
+  test('should setup default filter values', () => {
+    const state = filterReducer(undefined, { type: '@@INIT' });
+
+    expect(state).toEqual(FILTER_REDUCER_DEFAULT);
+  });
+
   test('it should set text filter', () => {
     const state = FILTER_REDUCER_DEFAULT;
-    const testText = 'filter test';
-    const action = actions.setTextFilter(testText);
+    const text = 'filter test';
+    const action = actions.setTextFilter(text);
 
     const r = filterReducer(state, action);
 
-    expect(r).toEqual({ ...FILTER_REDUCER_DEFAULT, text: testText });
+    expect(r).toEqual({ ...FILTER_REDUCER_DEFAULT, text });
   });
 
   test('it should sort by amount', () => {
@@ -24,7 +30,7 @@ describe('Filters store', () => {
   });
 
   test('it should sort by date', () => {
-    const state = FILTER_REDUCER_DEFAULT;
+    const state = { ...FILTER_REDUCER_DEFAULT, sortBy: 'amount' };
     const action = actions.sortByDate();
 
     const r = filterReducer(state, action);

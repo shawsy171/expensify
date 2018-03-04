@@ -1,7 +1,7 @@
 // @ts-check
 import { expenseTypes } from './actions';
 
-const EXPENSES_REDUCER_DEFAULT_STATE = [];
+export const EXPENSES_REDUCER_DEFAULT_STATE = [];
 
 const expensesReducer = (state = EXPENSES_REDUCER_DEFAULT_STATE, action) => {
   switch (action.type) {
