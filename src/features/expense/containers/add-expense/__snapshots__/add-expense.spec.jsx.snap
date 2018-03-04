@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Expense Component should render AddExpensePage Correctly  1`] = `
+<div>
+  <p>
+     this is the AddExpensePage 
+  </p>
+  <ExpenseForm
+    expense={
+      Object {
+        "amount": 0,
+        "calenderFocused": false,
+        "createdAt": "1970-01-01T00:00:00.000Z",
+        "description": "",
+        "error": false,
+        "note": "",
+      }
+    }
+    onSubmit={[Function]}
+  />
+</div>
+`;
