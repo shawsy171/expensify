@@ -1,9 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
+// vendor
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
-import PropTypes from 'prop-types';
 
 class ExpenseForm extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class ExpenseForm extends React.Component {
       description,
       amount,
       createdAt,
+      note,
     } = this.state;
 
     const { onSubmit } = this.props;
@@ -39,6 +41,7 @@ class ExpenseForm extends React.Component {
         description,
         amount: parseFloat(amount) * 100,
         createdAt: createdAt.valueOf(),
+        note,
       });
     }
   }
@@ -125,7 +128,7 @@ class ExpenseForm extends React.Component {
 }
 
 ExpenseForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   expense: PropTypes.shape({
     amount: PropTypes.number,
     createdAt: PropTypes.oneOfType([
@@ -147,6 +150,7 @@ ExpenseForm.defaultProps = {
     calenderFocused: false,
     error: false,
   },
+  onSubmit: () => {},
 };
 
 export default ExpenseForm;
