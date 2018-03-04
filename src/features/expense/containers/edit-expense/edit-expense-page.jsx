@@ -9,41 +9,46 @@ import { editExpense, removeExpense } from './../../store/expense/actions';
 // components
 import ExpenseForm from './../../components/expense-form/expense-form';
 
-const EditExpensePage = (props) => {
-  const {
-    expense,
-    dispatch,
-    history,
-    match: {
-      params: {
-        id,
+export class EditExpensePage extends React.Component {
+  onSubmit = (submittedExpense) => {
+    this.props.editExpense(this.props.match.params.id, submittedExpense);
+    this.props.history.push('/');
+  };
+
+  removeClick = () => {
+    this.props.removeExpense(this.props.match.params.id);
+    this.props.history.push('/');
+  }
+
+  render() {
+    const {
+      expense,
+      match: {
+        params: {
+          id,
+        },
       },
-    },
-  } = props;
-  const handleSubmit = (submittedExpense) => {
-    dispatch(editExpense(id, submittedExpense));
-    history.push('/');
-  };
-
-  const removeClick = () => {
-    dispatch(removeExpense(id));
-    history.push('/');
-  };
-
-  return (
-    <div>
-      <p> this is the edit page, {id}</p>
-      <ExpenseForm
-        expense={expense}
-        onSubmit={handleSubmit}
-      />
-      <button onClick={removeClick} >Remove</button>
-    </div>
-  );
-};
+    } = this.props;
+    return (
+      <div>
+        <p> this is the edit page, {id}</p>
+        <ExpenseForm
+          expense={expense}
+          onSubmit={this.onSubmit}
+        />
+        <button onClick={this.removeClick} >Remove</button>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state, props) => ({
   expense: state.expenses.find(expense => expense.id === props.match.params.id),
+});
+
+const mapDispatchToProps = dispatch => ({
+  editExpense: (id, submittedExpense) => dispatch(editExpense(id, submittedExpense)),
+  removeExpense: id => dispatch(removeExpense(id)),
 });
 
 EditExpensePage.propTypes = {
@@ -54,9 +59,10 @@ EditExpensePage.propTypes = {
     id: PropTypes.string,
     note: PropTypes.string,
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  editExpense: PropTypes.func.isRequired,
+  removeExpense: PropTypes.func.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
-export default connect(mapStateToProps)(EditExpensePage);
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);

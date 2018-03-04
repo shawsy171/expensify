@@ -28,3 +28,11 @@ export const historyMock = {
   push: jest.fn(), // .isRequired
   replace: jest.fn(), // .isRequired
 };
+
+
+export const matchMock = {
+  // isExact: PropTypes.bool,
+  params: {}, // .isRequired,
+  path: '/', // .isRequired,
+  url: '/', // .isRequired,
+};
