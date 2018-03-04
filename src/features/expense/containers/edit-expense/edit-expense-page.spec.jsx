@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { historyMock, matchMock } from './../../../../tests/router.mock';
-import expenses from './../../../../tests/fixtures';
+import expenses from './../../../../tests/fixtures/expenses';
 
 // component
 import { EditExpensePage } from './edit-expense-page';

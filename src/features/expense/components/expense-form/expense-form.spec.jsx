@@ -70,7 +70,7 @@ describe('ExpenseForm Component', () => {
     const value = '12.222';
     const wrapper = shallow(<ExpenseForm />);
 
-    wrapper.find('input').at(1).simulate('onchange', {
+    wrapper.find('input').at(1).simulate('change', {
       target: { value },
     });
 
