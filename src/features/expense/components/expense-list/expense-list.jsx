@@ -10,12 +10,13 @@ import ExpenseListItem from './expense-list-item/expense-list-item';
 // selectors
 import selectorExpenses from './../../store/expense/selectors';
 
-const ExpenseList = (props) => {
+export const ExpenseList = (props) => {
   const { expenses } = props;
 
   const mapList = () => (
-    expenses.map(expense =>
-      <ExpenseListItem key={expense.id} expense={expense} />)
+    expenses.length === 0 ? <p>No expenses</p> :
+      expenses.map(expense =>
+        <ExpenseListItem key={expense.id} expense={expense} />)
   );
 
   return (
