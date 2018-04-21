@@ -12,7 +12,9 @@
     "dev-server": "webpack-dev-server",
     "lint": "eslint --ext .jsx,.js .",
     "test": "jest --config=jest.config.json",
-    "dev-test": "jest --config=jest.config.json --watch"
+    "dev-test": "jest --config=jest.config.json --watch",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
