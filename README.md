@@ -8,6 +8,11 @@
 yarn run build:prod
 ```
 
+## Run Server
+```
+yarn start
+```
+
 ## Run tests
 ```
 yarn run test

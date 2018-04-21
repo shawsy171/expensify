@@ -1,7 +1,8 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const outputFile = path.join(__dirname, 'public');
+const publicBasePath = path.join(__dirname, 'public');
+const publicOutputPath = path.join(publicBasePath, 'dist');
 
 
 module.exports = (env) => {
@@ -17,7 +18,7 @@ module.exports = (env) => {
 
     output: {
       // path must be the absolute path for the output file
-      path: outputFile,
+      path: publicOutputPath,
       // filename is the name of the file produced by webpack
       filename: 'bundle.js',
     },
@@ -56,8 +57,9 @@ module.exports = (env) => {
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
-      contentBase: outputFile,
+      contentBase: publicBasePath,
       historyApiFallback: true,
+      publicPath: '/dist/',
       port: 9000,
     },
 
