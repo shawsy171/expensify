@@ -10,7 +10,7 @@ describe('ExpenseListItem Component', () => {
       id: '3',
       description: 'Credit Card',
       note: '',
-      amount: 4500,
+      amount: 4499,
       createdAt: moment(0).add(4, 'days').valueOf(),
     };
 
