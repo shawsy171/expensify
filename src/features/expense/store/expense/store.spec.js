@@ -2,7 +2,7 @@
 import moment from 'moment';
 import * as actions from './actions';
 import expensesReducer, { EXPENSES_REDUCER_DEFAULT_STATE } from './reducers';
-import selectExpenses, { getExpensesTotal } from './selectors';
+import selectExpenses, { selectorExpensesTotal } from './selectors';
 
 describe('Expense Store', () => {
   describe('Actions and Reducers', () => {
@@ -177,7 +177,7 @@ describe('Expense Store', () => {
 
       test('should return 0 if no expense', () => {
 
-        const results = getExpensesTotal([]);
+        const results = selectorExpensesTotal([]);
 
         expect(results).toBe(0);
 
@@ -185,7 +185,7 @@ describe('Expense Store', () => {
 
       test('should correctly add up a single expense', () => {
         expenses = expenses.slice(0, 1);
-        const results = getExpensesTotal(expenses);
+        const results = selectorExpensesTotal(expenses);
 
         expect(results).toBe(195);
 
@@ -193,7 +193,7 @@ describe('Expense Store', () => {
 
       test('should correctly add up multiple expenses', () => {
 
-        const results = getExpensesTotal(expenses);
+        const results = selectorExpensesTotal(expenses);
 
         expect(results).toBe(114195);
 

@@ -5,6 +5,7 @@ exports[`ExpenseDashBoard Component should render correctly 1`] = `
   <p>
      this is the Expense DashBoard 
   </p>
+  <Connect(ExpenseSummary) />
   <Connect(ExpenseListFilters) />
   <Connect(ExpenseList) />
 </div>
