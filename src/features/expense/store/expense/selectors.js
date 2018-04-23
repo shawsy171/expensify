@@ -53,4 +53,17 @@ const getVisibleExpenses = (expenses, {
   return undefined;
 }));
 
+export const getExpensesTotal = (expenses) => {
+  return expenses.reduce((acc, cur) => acc + cur.amount, 0);
+  // return expenses.length !== 0 ?
+  //   expenses.reduce((acc, cur) => acc + cur.amount, 0) : 0;
+  // if (expenses === undefined) {
+  //   return 0;
+  // } else {
+  //   return expenses.reduce((acc, cur) =>
+  //     acc + cur.amount
+  //   , 0)
+  // }
+}
+
 export default getVisibleExpenses;

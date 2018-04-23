@@ -2,7 +2,7 @@
 import moment from 'moment';
 import * as actions from './actions';
 import expensesReducer, { EXPENSES_REDUCER_DEFAULT_STATE } from './reducers';
-import selectExpenses from './selectors';
+import selectExpenses, { getExpensesTotal } from './selectors';
 
 describe('Expense Store', () => {
   describe('Actions and Reducers', () => {
@@ -172,6 +172,35 @@ describe('Expense Store', () => {
 
       expect(results).toEqual([expenses[1], expenses[2], expenses[0]]);
     });
+
+    describe('getExpensesTotal', () => {
+
+      test('should return 0 if no expense', () => {
+
+        const results = getExpensesTotal([]);
+
+        expect(results).toBe(0);
+
+      });
+
+      test('should correctly add up a single expense', () => {
+        expenses = expenses.slice(0, 1);
+        const results = getExpensesTotal(expenses);
+
+        expect(results).toBe(195);
+
+      });
+
+      test('should correctly add up multiple expenses', () => {
+
+        const results = getExpensesTotal(expenses);
+
+        expect(results).toBe(114195);
+
+      })
+    });
+
+
   }); // END OF describe('Selectors',
 }); // END OF describe('Expense Store',
 
