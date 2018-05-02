@@ -19,7 +19,7 @@ https://yarnpkg.com/en/docs/cli/run
 5. Learn how React works @ 16:25
 http://www.mattgreer.org/articles/react-internals-part-one-basic-rendering/
 
-### REACT NYC 
+### REACT NYC
 https://www.youtube.com/channel/UC87H0RRqawG6I7oWAf9i48g
 
 ### Air BnB Date Picker
@@ -30,3 +30,8 @@ eslint .js, .jsx
 
 ### react-router-prop-types
 https://www.npmjs.com/package/react-router-prop-types
+
+## use firebase
+```
+yarn add firebase
+```
