@@ -14,6 +14,53 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'Damien Shaw',
-})
+/* *************************************
+  Set
+************************************** */
+
+database.ref()
+  .set({
+    name: 'Damien Shaw',
+    age: 36,
+    isSingle: false,
+    job: 'Software Developer',
+    location: {
+      city: 'London',
+      country: 'England'
+    },
+  }).then(() => {
+    console.log('data has been set');
+  }).catch((error) => {
+    console.error('error: ', error);
+  })
+
+
+/* *************************************
+  Remove
+************************************** */
+
+// database.ref('isSingle')
+//   .remove()
+//   .then(()=> {
+//     console.log('data was removed');
+//   }).catch((error) => {
+//     console.error('error: ', error);
+//   });
+
+/* *************************************
+  Update
+************************************** */
+
+// database.ref()
+//   .update({
+//     name: 'Mike know',
+//     age: 16,
+//   }).then(()=> {
+//     console.log('data has been updated');
+//   }).catch((error) => {
+//     console.error('error: ', error);
+//   });
+
+/* *************************************
+
+************************************** */
