@@ -18,21 +18,21 @@ const database = firebase.database();
   Set
 ************************************** */
 
-database.ref()
-  .set({
-    name: 'Damien Shaw',
-    age: 36,
-    isSingle: false,
-    job: 'Software Developer',
-    location: {
-      city: 'London',
-      country: 'England'
-    },
-  }).then(() => {
-    console.log('data has been set');
-  }).catch((error) => {
-    console.error('error: ', error);
-  })
+// database.ref()
+//   .set({
+//     name: 'Damien Shaw',
+//     age: 36,
+//     isSingle: false,
+//     job: 'Software Developer',
+//     location: {
+//       city: 'London',
+//       country: 'England'
+//     },
+//   }).then(() => {
+//     console.log('data has been set');
+//   }).catch((error) => {
+//     console.error('error: ', error);
+//   })
 
 
 /* *************************************
@@ -62,5 +62,42 @@ database.ref()
 //   });
 
 /* *************************************
-
+  once
+  get data once
 ************************************** */
+
+// database.ref()
+//   .once('value')
+//   .then((snapshot) => {
+//     const val = snapshot.val();
+//     console.log('val', val);
+//   })
+//   .catch((e) => {
+//     console.error('Error: ', e);
+//   });
+
+/* *************************************
+  on
+  subscribe to changes in the database
+************************************** */
+const onValueChange = database.ref().on('value', (snapshot) => {
+  const val = snapshot.val();
+  console.log('val', val);
+})
+
+setTimeout(() => {
+  database.ref('age').set(27)
+}, 3500);
+
+/* *************************************
+  off
+  unsubscribes from changes in the database
+************************************** */
+
+setTimeout(() => {
+  database.ref().off('value', onValueChange);
+}, 7500);
+
+setTimeout(() => {
+  database.ref('age').set(122)
+}, 10500);
