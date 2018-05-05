@@ -78,26 +78,52 @@ const database = firebase.database();
 
 /* *************************************
   on
-  subscribe to changes in the database
+  - subscribe to changes in the database
 ************************************** */
-const onValueChange = database.ref().on('value', (snapshot) => {
-  const val = snapshot.val();
-  console.log('val', val);
-})
 
-setTimeout(() => {
-  database.ref('age').set(27)
-}, 3500);
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//   const val = snapshot.val();
+//   console.log('val', val);
+// })
+
+// setTimeout(() => {
+//   database.ref('age').set(27)
+// }, 3500);
 
 /* *************************************
   off
-  unsubscribes from changes in the database
+  - unsubscribes from changes in the database
 ************************************** */
 
-setTimeout(() => {
-  database.ref().off('value', onValueChange);
-}, 7500);
+// setTimeout(() => {
+//   database.ref().off('value', onValueChange);
+// }, 7500);
 
-setTimeout(() => {
-  database.ref('age').set(122)
-}, 10500);
+// setTimeout(() => {
+//   database.ref('age').set(122)
+// }, 10500);
+
+/* *************************************
+  push
+  - append data
+************************************** */
+
+// database.ref('notes')
+//   .push({
+//     title: 'clean up',
+//     body: 'remove the age'
+//   })
+
+database.ref('notes')
+  .on('value', (snapshot) => {
+    const notesArray = [];
+
+    snapshot.forEach((childSnapshot) => {
+      notesArray.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val(),
+      })
+    })
+
+    console.log('notesArray', notesArray);
+  })

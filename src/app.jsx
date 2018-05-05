@@ -23,33 +23,41 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(expenseActions.addExpense({
-  description: 'Water Bill',
-  note: 'to be paid',
-  amount: 45000,
-  createdAt: 3119933256303,
-}));
+store.dispatch({type: 'ADD_EXPENSE_EPIC', expense: {
+  id: 678,
+  description: 'test best',
+  note: 'this is a note',
+  amount: 9399393,
+  createdAt: 123456789,
+},});
 
-store.dispatch(expenseActions.addExpense({
-  description: 'Gas Bill',
-  note: 'to be paid',
-  amount: 19000,
-  createdAt: 91993325633,
-}));
+// store.dispatch(expenseActions.addExpense({
+//   description: 'Water Bill',
+//   note: 'to be paid',
+//   amount: 45000,
+//   createdAt: 3119933256303,
+// }));
 
-store.dispatch(expenseActions.addExpense({
-  description: 'Rent',
-  note: 'to be paid',
-  amount: 109000,
-  createdAt: 1999305,
-}));
+// store.dispatch(expenseActions.addExpense({
+//   description: 'Gas Bill',
+//   note: 'to be paid',
+//   amount: 19000,
+//   createdAt: 91993325633,
+// }));
 
-store.dispatch(expenseActions.addExpense({
-  description: 'Credit Card Bill',
-  note: 'to be paid',
-  amount: 63000,
-  createdAt: 9299304,
-}));
+// store.dispatch(expenseActions.addExpense({
+//   description: 'Rent',
+//   note: 'to be paid',
+//   amount: 109000,
+//   createdAt: 1999305,
+// }));
+
+// store.dispatch(expenseActions.addExpense({
+//   description: 'Credit Card Bill',
+//   note: 'to be paid',
+//   amount: 63000,
+//   createdAt: 9299304,
+// }));
 
 store.dispatch(filterActions.setTextFilter(''));
 
