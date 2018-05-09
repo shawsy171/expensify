@@ -20,18 +20,17 @@ import './database/firebase';
 const store = configureStore();
 
 store.subscribe(() => {
-  console.log(store.getState());
+  console.log('GetState', store.getState());
 });
 
-store.dispatch({type: 'ADD_EXPENSE_EPIC', expense: {
-  id: 678,
-  description: 'test best',
+store.dispatch(expenseActions.addExpense({
+  description: 'best test',
   note: 'this is a note',
   amount: 9399393,
   createdAt: 123456789,
-},});
+}));
 
-// store.dispatch(expenseActions.addExpense({
+// store.dispatch(expenseActions.addExpenseSuccess({
 //   description: 'Water Bill',
 //   note: 'to be paid',
 //   amount: 45000,
@@ -59,11 +58,11 @@ store.dispatch({type: 'ADD_EXPENSE_EPIC', expense: {
 //   createdAt: 9299304,
 // }));
 
-store.dispatch(filterActions.setTextFilter(''));
+// store.dispatch(filterActions.setTextFilter(''));
 
-setTimeout(() => {
-  store.dispatch(filterActions.setTextFilter(''));
-}, 3000);
+// setTimeout(() => {
+//   store.dispatch(filterActions.setTextFilter(''));
+// }, 3000);
 // const state = store.getState();
 //   const visibleExpenses = expenseSelectors.getVisibleExpenses(state.expenses, state.filters);
 //   console.log(visibleExpenses);

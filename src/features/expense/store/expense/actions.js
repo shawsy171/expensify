@@ -1,10 +1,12 @@
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 // Actions
 export const expenseTypes = {
   ADD_EXPENSE: 'ADD_EXPENSE',
+  ADD_EXPENSE_SUCCESS: 'ADD_EXPENSE_SUCCESS',
   REMOVE_EXPENSE: 'REMOVE_EXPENSE',
   EDIT_EXPENSE: 'EDIT_EXPENSE',
+  ADD_EXPENSE_FAILURE: 'ADD_EXPENSE_FAILURE',
 };
 
 // Action Generators
@@ -31,18 +33,32 @@ export const addExpense = ({
   note = '',
   amount = 0,
   createdAt = 0,
-} = {}) => (
+} = {}) => ({
+  type: expenseTypes.ADD_EXPENSE,
+  expense: {
+    description,
+    note,
+    amount,
+    createdAt,
+  },
+});
+
+export const addExpenseSuccess = (expense, id) => (
   {
-    type: expenseTypes.ADD_EXPENSE,
+    type: expenseTypes.ADD_EXPENSE_SUCCESS,
     expense: {
-      id: uuid(),
-      description,
-      note,
-      amount,
-      createdAt,
+      id,
+      ...expense,
     },
   }
 );
+
+export const addExpenseFailure = (expense, err) => {
+  console.error('Failed to add expense', err, expense);
+  return {
+    type: expenseTypes.ADD_EXPENSE_FAILURE,
+  };
+};
 
 /** Removes a expense from the expenses array
  * @param { number } id

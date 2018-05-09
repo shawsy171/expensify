@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { history as historyPropTypes } from 'history-prop-types';
 
 // components
 import ExpenseForm from '../../components/expense-form/expense-form';
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
 
 AddExpensePage.propTypes = {
   addExpense: PropTypes.func.isRequired,
-  history: ReactRouterPropTypes.history.isRequired,
+  history: PropTypes.shape(historyPropTypes).isRequired,
 };
 
 export default connect(undefined, mapDispatchToProps)(AddExpensePage);
