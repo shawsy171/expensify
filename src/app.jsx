@@ -13,7 +13,7 @@ import AppRoutes from './core/routes/app.routes';
 // state
 import configureStore from './core/store/configureStore';
 import * as expenseActions from './features/expense/store/expense/actions';
-import * as filterActions from './features/expense/store/filters/actions';
+// import * as filterActions from './features/expense/store/filters/actions';
 
 import './database/firebase';
 
