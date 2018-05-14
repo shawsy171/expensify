@@ -1,9 +1,11 @@
 import nock from 'nock';
+import 'rxjs/add/operator/toArray';
+import 'rxjs/add/observable/of';
+
 import configureMockStore from 'redux-mock-store';
-import { createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware, ActionsObservable } from 'redux-observable';
 import { addExpenseEpic } from './epics';
-import { addExpense } from './actions';
-import { equal } from 'assert';
+import { addExpense, addExpenseSuccess } from './actions';
 
 const epicMiddleware = createEpicMiddleware(addExpenseEpic);
 const mockStore = configureMockStore([epicMiddleware]);
@@ -17,21 +19,38 @@ describe('addExpenseEpic', () => {
 
   afterEach(() => {
     nock.cleanAll();
-    // epicMiddleware.replaceEpic(addExpenseEpic);
+    epicMiddleware.replaceEpic(addExpenseEpic);
   });
 
-  test('should add expense when call to database is successful', () => {
-    const expense = { id: 123, amount: 27 };
+  test('should add expense when call to database is successful', (done) => {
+    const expense = {
+      amount: 27,
+      createdAt: 0,
+      description: '',
+      id: '-LCB958kAEspLLhFkp6y',
+      note: '',
+    };
+    // nock('http://example.com/')
+    //   .get('/api/users/123')
+    //   .reply(403, expense);
 
-    store.dispatch(addExpense(expense));
-
-    nock('http://example.com/')
-      .get('/api/users/123')
-      .reply(403, expense);
+    // store.dispatch(addExpense(expense));
     // this test is broken it should equal
     // [addExpense(expense), addExpenseSuccess(expense)]
     // https://redux-observable.js.org/docs/recipes/WritingTests.html
-    expect(store.getActions()).toEqual([addExpense(expense)]);
+    // expect(store.getActions()).toEqual([addExpense(expense)]);
+    // expect(store.getActions()).toEqual([addExpense(expense)]);
+    const action$ = ActionsObservable.of(addExpense(expense));
+    addExpenseEpic(action$)
+      .toArray()
+      .subscribe((result) => {
+        expect(result).toEqual([{
+          expense: { ...expense, id: expect.any(String) },
+          type: 'ADD_EXPENSE_SUCCESS',
+        }]);
+        done();
+      });
   });
 });
 
+// expect(r).toEqual([{ ...newExpense, id: expect.any(String) }]);
